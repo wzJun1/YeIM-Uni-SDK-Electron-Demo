@@ -9,12 +9,14 @@ YeIM-Uni-SDK是一款基于UniAPP的开源聊天SDK，可为项目快速接入�
 
 `此为社区开源项目，用于学习YeIM-Uni-SDK、技术交流使用，禁止用于非法途径，禁止商用。如作他用所造成的一切法律责任均不由作者承担。` 
 
+![](https://s2.loli.net/2023/03/08/Mp6stlRvqrm2WSO.png)
 
 ## 下载演示版本
 
-![](https://s2.loli.net/2023/03/08/Mp6stlRvqrm2WSO.png)
+Windows或MacOS可下载发行版测试：
 
-https://github.com/wzJun1/YeIM-Uni-SDK-Electron-Demo/releases
+[https://github.com/wzJun1/YeIM-Uni-SDK-Electron-Demo/releases](https://github.com/wzJun1/YeIM-Uni-SDK-Electron-Demo/releases)
+
 
 ## 编译运行
 
