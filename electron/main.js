@@ -45,7 +45,7 @@ const createLoginWindow = () => {
 	// 关闭默认菜单
 	loginWindow.setMenu(null);
 
-	//loginWindow.loadURL("http://localhost:5173");
+	//loginWindow.loadURL("http://localhost:5173"); //开发调试H5
 	loginWindow.loadFile("dist/build/h5/index.html");
 
 	loginWindow.once("ready-to-show", () => {
@@ -89,7 +89,7 @@ function createMainWindow() {
 	});
 	// 关闭默认菜单
 	mainWindow.setMenu(null);
-	//mainWindow.loadURL("http://localhost:5173/#/pages/main/index");
+	//mainWindow.loadURL("http://localhost:5173/#/pages/main/index"); //开发调试H5
 	mainWindow.loadFile("dist/build/h5/index.html", {
 		hash: "/pages/main/index"
 	});

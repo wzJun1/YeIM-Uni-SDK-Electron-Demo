@@ -46,6 +46,12 @@ npm i
 npm run build:h5
 ```
 
+或者开启调试模式，调试H5需要在electron/main.js中修改加载的url
+
+```shell
+npm run dev:h5
+```
+
 ### 运行Electron
 
 ```shell
