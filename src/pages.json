@@ -1,0 +1,34 @@
+{
+	"pages": [{
+		"path": "pages/publish/login",
+		"style": {
+			"navigationBarTitleText": "用户登录",
+			"leftWindow": false,
+			"rightWindow": false
+		}
+	}, {
+		"path": "pages/main/index",
+		"style": {
+			"navigationBarTitleText": "程序主页",
+			"enablePullDownRefresh": false
+		}
+	}],
+	"leftWindow": {
+		"path": "pages/main/window/left-window.vue",
+		"style": {
+			"width": "calc(65px + 250px)"
+		},
+		"matchMedia": {
+			"minWidth": 0
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff",
+		"h5": {
+			"titleNView": false
+		}
+	}
+}
