@@ -37,6 +37,7 @@ import {
 import {
 	useCoreStore
 } from '@/stores/useCoreStore'
+import { YeIMUniSDK } from "yeim-uni-sdk";
 const coreStore = useCoreStore()
 
 const selectedConversationId = ref("");
@@ -44,8 +45,9 @@ const selectedConversationId = ref("");
 const conversationClick = (item: Conversation) => {
 	selectedConversationId.value = item.conversationId;
 	coreStore.currentConversaton = item;
-	// @ts-ignore 清除指定会话未读数，并给对方发送已读回执
-	uni.$YeIM.clearConversationUnread(item.conversationId);
+	console.log(item);
+	// 清除指定会话未读数，并给对方发送已读回执
+	YeIMUniSDK.getInstance()?.clearConversationUnread(item.conversationId);
 	uni.$emit('onConversationSelected', item);
 }
 

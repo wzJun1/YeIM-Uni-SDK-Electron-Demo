@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import type { SDKResultModel } from "@/entity/SDKResultModel";
 import type { UserInfo } from "@/entity/Conversation";
 import type { Conversation } from "@/entity/Conversation";
+import { YeIMUniSDK, YeIMUniSDKDefines } from "yeim-uni-sdk";
 
 
 export const useCoreStore = defineStore("IMCore", {
@@ -16,8 +17,7 @@ export const useCoreStore = defineStore("IMCore", {
 	},
 	actions: {
 		login(userId: string, token: string, expire: number) {
-			// @ts-ignore
-			uni.$YeIM.connect({
+			YeIMUniSDK.getInstance()?.connect({
 				userId: userId,
 				token: token,
 				success: (response: SDKResultModel) => {
@@ -44,21 +44,20 @@ export const useCoreStore = defineStore("IMCore", {
 		listener() {
 			if (this.startListener) return;
 			this.startListener = true;
-			// @ts-ignore
-			uni.$YeIM.addEventListener(uni.$YeIMUniSDKDefines.EVENT.CONVERSATION_LIST_CHANGED, (list) => {
+
+			YeIMUniSDK.getInstance()?.addEventListener(YeIMUniSDKDefines.EVENT.CONVERSATION_LIST_CHANGED, (list) => {
 				console.log("监听会话列表更新:");
 				console.log(list);
 				this.conversationList = list;
 			})
-			// @ts-ignore 监听用户被踢下线
-			uni.$YeIM.addEventListener(uni.$YeIMUniSDKDefines.EVENT.KICKED_OUT, () => {
+			// 监听用户被踢下线
+			YeIMUniSDK.getInstance()?.addEventListener(YeIMUniSDKDefines.EVENT.KICKED_OUT, () => {
 				console.log("用户被踢下线");
 				this.kickOut();
 			});
 		},
 		kickOut() {
-			// @ts-ignore
-			uni.$YeIM.disConnect();
+			YeIMUniSDK.getInstance()?.disConnect();
 			this.isLogged = false;
 			this.userInfo = null;
 			this.currentConversaton = {} as Conversation || null;

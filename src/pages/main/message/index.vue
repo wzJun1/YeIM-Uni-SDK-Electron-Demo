@@ -72,6 +72,7 @@ import {
 import {
 	useCoreStore
 } from '@/stores/useCoreStore'
+import { YeIMUniSDK } from "yeim-uni-sdk";
 
 const coreStore = useCoreStore();
 
@@ -88,14 +89,17 @@ const scrollTop = ref(0);
 const scrollWithAnimation = ref(false);
 
 const getMessageList = () => {
-	// @ts-ignore
-	uni.$YeIM.getMessageList({
-		page: page.value,
+
+	YeIMUniSDK.getInstance()?.getHistoryMessageList({
 		conversationId: coreStore.currentConversaton.conversationId,
 		success: (res: any) => {
+
+
+			let records = res.data.list as Array<Message>;
+			console.log(records);
 			if (page.value == 1) {
-				messageList.value = res.data as Array<Message>;
-				if (res.data.length) {
+				messageList.value = records;
+				if (records.length) {
 					nextTick(async () => {
 						//滚动方案1
 						scrollIntoView.value = "message_" + (messageList.value[messageList.value.length - 1].messageId);
@@ -199,12 +203,10 @@ onMounted(() => {
 			//scrollTop.value = 9999999 + Math.floor(Math.random() * 9);
 		});
 	})
-	//监听新消息接收
-	//@ts-ignore
-	uni.$YeIM.addEventListener(uni.$YeIMUniSDKDefines.EVENT.MESSAGE_RECEIVED, (message) => {
+	//监听新消息接收 
+	YeIMUniSDK.getInstance()?.addEventListener(YeIMUniSDKDefines.EVENT.MESSAGE_RECEIVED, (message) => {
 		console.log("收到新消息:")
 		console.log(message)
-
 		scrollWithAnimation.value = true;
 		messageList.value.push(message);
 		nextTick(() => {
@@ -212,8 +214,8 @@ onMounted(() => {
 			//scrollTop.value = 9999999 + Math.floor(Math.random() * 9);
 		})
 
-		// @ts-ignore 清除指定会话未读数，并给对方发送已读回执
-		uni.$YeIM.clearConversationUnread(coreStore.currentConversaton.conversationId);
+		// 清除指定会话未读数，并给对方发送已读回执
+		YeIMUniSDK.getInstance()?.clearConversationUnread(coreStore.currentConversaton.conversationId);
 	});
 
 })

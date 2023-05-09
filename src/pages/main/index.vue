@@ -90,6 +90,7 @@ import message from './message/index.vue'
 import {
 	useCoreStore
 } from '@/stores/useCoreStore'
+import { YeIMUniSDK } from "yeim-uni-sdk";
 const coreStore = useCoreStore();
 
 const ifWin = ref(false);
@@ -106,8 +107,9 @@ const textArea = ref("");
 
 const sendTextMessage = () => {
 	if (textArea.value) {
+		uni.chooseImage()
 		// @ts-ignore
-		let message = uni.$YeIM.createTextMessage({
+		let message = YeIMUniSDK.getInstance()?.createTextMessage({
 			toId: coreStore.currentConversaton.conversationId,
 			conversationType: coreStore.currentConversaton.type,
 			body: {
@@ -115,7 +117,7 @@ const sendTextMessage = () => {
 			}
 		});
 		// @ts-ignore
-		uni.$YeIM.sendMessage({
+		YeIMUniSDK.getInstance()?.sendMessage({
 			message: message,
 			success: (res: any) => {
 				uni.$emit('onInsertMessageList', res.data);
@@ -143,8 +145,8 @@ const sendImageMessage = () => {
 			})
 			console.log(imageInfo)
 
-			// @ts-ignore 创建图片消息
-			let message = uni.$YeIM.createImageMessage({
+			// 创建图片消息
+			let message = YeIMUniSDK.getInstance()?.createImageMessage({
 				toId: coreStore.currentConversaton.conversationId,
 				conversationType: coreStore.currentConversaton.type,
 				body: {
@@ -156,8 +158,8 @@ const sendImageMessage = () => {
 				}
 			});
 
-			// @ts-ignore 发送消息
-			uni.$YeIM.sendMessage({
+			// 发送消息
+			YeIMUniSDK.getInstance()?.sendMessage({
 				message: message,
 				success: (res: any) => {
 					console.log(res);
@@ -176,8 +178,8 @@ const sendVideoMessage = () => {
 		sourceType: ['camera', 'album'],
 		success: (res) => {
 			console.log(res)
-			// @ts-ignore 创建小视频消息
-			let message = uni.$YeIM.createVideoMessage({
+			// 创建小视频消息
+			let message = YeIMUniSDK.getInstance()?.createVideoMessage({
 				toId: coreStore.currentConversaton.conversationId,
 				conversationType: coreStore.currentConversaton.type,
 				body: {
@@ -190,8 +192,8 @@ const sendVideoMessage = () => {
 				}
 			});
 
-			// @ts-ignore 发送消息
-			uni.$YeIM.sendMessage({
+			// 发送消息
+			YeIMUniSDK.getInstance()?.sendMessage({
 				message: message,
 				success: (res: any) => {
 					console.log(res);

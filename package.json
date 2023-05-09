@@ -33,7 +33,7 @@
     "pinia": "^2.0.32",
     "vue": "3.2.47",
     "vue-i18n": "9.2.2",
-    "yeim-uni-sdk": "^1.1.6"
+    "yeim-uni-sdk": "^1.2.5"
   },
   "devDependencies": {
     "@dcloudio/types": "3.2.11",

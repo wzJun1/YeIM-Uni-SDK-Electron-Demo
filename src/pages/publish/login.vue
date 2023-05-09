@@ -62,7 +62,7 @@ import {
 	ref
 } from "vue";
 import uniIcons from '@/components/uni-icons/uni-icons.vue';
-
+import { YeIMUniSDK } from 'yeim-uni-sdk';
 // @ts-ignore
 import md5 from 'js-md5';
 
@@ -130,7 +130,7 @@ const login = () => {
 
 	uni.request({
 		// @ts-ignore
-		url: uni.$YeIM.defaults.baseURL + "/user/token/get",
+		url: YeIMUniSDK.getInstance().defaults.baseURL + "/user/token/get",
 		method: 'POST',
 		data: {
 			userId: account.value,
