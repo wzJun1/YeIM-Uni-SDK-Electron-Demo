@@ -1,6 +1,8 @@
 
 ![](https://s2.loli.net/2023/03/08/Mp6stlRvqrm2WSO.png)
 
+![微信公众号.png](https://s2.loli.net/2024/03/31/MHE1CD3WtP2nUOQ.jpg)
+
 ## 此仓库说明
 
 此仓库代码为基于YeIM-Uni-SDK的Electron桌面端案例，实现了基本的聊天功能
